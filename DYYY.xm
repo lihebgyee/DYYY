@@ -4258,6 +4258,8 @@ static BOOL isDownloadFlied = NO;
     }
 }
 
+%end
+
 %hook IESLiveActivityBannnerView
 - (void)layoutSubviews {
     %orig;
