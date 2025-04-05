@@ -4249,21 +4249,14 @@ static BOOL isDownloadFlied = NO;
 %end
 
 //隐藏礼物展馆
-%hook BDXWebView
+%hook WKCompositingView
 - (void)layoutSubviews {
     %orig;
 
-    BOOL enabled = [[NSUserDefaults standardUserDefaults] boolForKey:@"DYYYHideGiftPavilion"];
-    if (!enabled) return;
-
-    NSString *title = [self valueForKey:@"title"];
-
-    if ([title containsString:@"任务Banner"] || 
-        [title containsString:@"活动Banner"]) {
-        [self removeFromSuperview];
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"DYYYHideGiftPavilion"]) {
+        self.hidden = YES;
     }
 }
-%end
 
 %hook IESLiveActivityBannnerView
 - (void)layoutSubviews {
